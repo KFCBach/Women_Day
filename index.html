@@ -31,7 +31,6 @@
       top: -40px;
       width: 14px;
       height: 18px;
-      background: radial-gradient(circle at 30% 30%, #ffd1db, var(--rose));
       border-radius: 0 100% 0 100%;
       opacity: 0.7;
       pointer-events: none;
@@ -88,7 +87,7 @@
     .photo-section {
       display: flex;
       justify-content: center;
-      margin-bottom: 64px;
+      margin-bottom: 56px;
     }
 
     .photo-frame {
@@ -115,80 +114,170 @@
       object-fit: cover;
     }
 
-    h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 32px;
-      text-align: center;
-      color: var(--rose-dark);
-      margin-bottom: 12px;
+    /* ---------- Nút bấm ---------- */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
-    .intro {
+    .btn {
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 26px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      background: #fff;
+      color: var(--rose-dark);
+      box-shadow: 0 8px 20px rgba(184, 74, 99, 0.15);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.active {
+      background: var(--rose-dark);
+      color: #fff;
+    }
+
+    /* ---------- Panel ---------- */
+    .panel {
+      display: none;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(232, 121, 143, 0.25);
+      border-radius: 22px;
+      padding: 36px 28px;
+      box-shadow: 0 12px 34px rgba(184, 74, 99, 0.1);
+      margin: 0 auto 56px;
+      max-width: 760px;
+      animation: rise 0.5s ease;
+    }
+
+    .panel.show {
+      display: block;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      text-align: center;
+      color: var(--rose-dark);
+      margin-bottom: 10px;
+    }
+
+    .panel .intro {
       text-align: center;
       color: var(--muted);
-      max-width: 620px;
-      margin: 0 auto 36px;
       font-weight: 300;
+      margin-bottom: 26px;
     }
 
+    /* Panel 1: các nét đẹp */
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      margin-bottom: 72px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(232, 121, 143, 0.25);
-      border-radius: 18px;
-      padding: 28px 24px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .feature {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 22px 20px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(184, 74, 99, 0.12);
+    .feature:hover {
+      transform: translateY(-3px);
+      border-color: rgba(232, 121, 143, 0.4);
     }
 
-    .card .icon {
-      font-size: 28px;
-      margin-bottom: 10px;
+    .feature .icon {
+      font-size: 26px;
+      margin-bottom: 8px;
     }
 
-    .card h3 {
+    .feature h3 {
       font-family: "Playfair Display", serif;
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 19px;
       color: var(--rose-dark);
+      margin-bottom: 6px;
     }
 
-    .card p {
+    .feature p {
       font-size: 15px;
       line-height: 1.7;
-      color: var(--ink);
+      display: none;
     }
 
-    .card p.todo {
+    .feature.open p {
+      display: block;
+      animation: rise 0.4s ease;
+    }
+
+    .todo {
       color: #c2a0aa;
       font-style: italic;
     }
 
-    .letter {
-      background: #fff;
-      border-radius: 22px;
-      padding: 44px 36px;
-      box-shadow: 0 12px 34px rgba(184, 74, 99, 0.1);
-      text-align: center;
-      margin-bottom: 40px;
+    /* Panel 2: mong ước */
+    .wishes {
+      list-style: none;
+      display: grid;
+      gap: 14px;
     }
 
+    .wishes li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    .wishes li.show {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .wishes .wish-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .wishes-hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    /* Panel 3: lời chúc */
     .letter p {
       font-size: 17px;
       line-height: 1.9;
       margin-bottom: 16px;
       font-weight: 300;
+      text-align: center;
     }
 
     .letter .sign {
@@ -198,6 +287,7 @@
       color: var(--rose-dark);
       margin-top: 22px;
       font-weight: 400;
+      text-align: center;
     }
 
     footer {
@@ -220,8 +310,9 @@
     }
 
     @media (max-width: 520px) {
-      .letter { padding: 32px 22px; }
+      .panel { padding: 28px 18px; }
       .letter p { font-size: 16px; }
+      .btn { font-size: 15px; padding: 12px 20px; }
     }
   </style>
 </head>
@@ -242,36 +333,59 @@
       </div>
     </section>
 
-    <section>
-      <h2>Nét đẹp trên gương mặt em</h2>
-      <p class="intro">Mỗi lần nhìn em, anh lại tìm thấy một điều mới để yêu.</p>
+    <!-- Ba nút chính -->
+    <div class="actions">
+      <button class="btn" data-target="panel-look">💭 Anh đang nghĩ gì về em</button>
+      <button class="btn" data-target="panel-wish">🌠 Mong ước của anh</button>
+      <button class="btn" data-target="panel-letter">💌 Lời chúc</button>
+    </div>
 
+    <!-- Panel 1: nét đẹp -->
+    <section class="panel" id="panel-look">
+      <h2>Nét đẹp trên gương mặt em</h2>
+      <p class="intro">Bấm vào từng phần để xem anh nghĩ gì.</p>
       <div class="features">
-        <div class="card">
+        <div class="feature">
           <div class="icon">👁️</div>
           <h3>Đôi mắt</h3>
-          <!-- TODO: viết sau khi xem ảnh -->
-          <p class="todo">[Đôi mắt em — sẽ điền sau khi anh xem ảnh]</p>
+          <p class="todo">[Sẽ điền sau khi anh xem ảnh]</p>
         </div>
-        <div class="card">
-          <div class="icon">😊</div>
-          <h3>Nụ cười</h3>
-          <p class="todo">[Nụ cười em — sẽ điền sau khi anh xem ảnh]</p>
+        <div class="feature">
+          <div class="icon">💋</div>
+          <h3>Môi</h3>
+          <p class="todo">[Sẽ điền sau khi anh xem ảnh]</p>
         </div>
-        <div class="card">
-          <div class="icon">✨</div>
-          <h3>Đường nét</h3>
-          <p class="todo">[Đường nét khuôn mặt — sẽ điền sau khi anh xem ảnh]</p>
+        <div class="feature">
+          <div class="icon">👃</div>
+          <h3>Mũi</h3>
+          <p class="todo">[Sẽ điền sau khi anh xem ảnh]</p>
         </div>
-        <div class="card">
+        <div class="feature">
           <div class="icon">🌸</div>
           <h3>Thần thái</h3>
-          <p class="todo">[Thần thái của em — sẽ điền sau khi anh xem ảnh]</p>
+          <p class="todo">[Sẽ điền sau khi anh xem ảnh]</p>
         </div>
       </div>
     </section>
 
-    <section class="letter">
+    <!-- Panel 2: mong ước -->
+    <section class="panel" id="panel-wish">
+      <h2>Những điều anh mong cho em</h2>
+      <p class="intro">Từng điều một, anh gửi đến em.</p>
+      <ul class="wishes">
+        <li><span class="wish-icon">🏆</span><span>Mọi việc em theo đuổi đều thành công, và em được ghi nhận xứng đáng với những gì em đã cố gắng.</span></li>
+        <li><span class="wish-icon">🌿</span><span>Em luôn khỏe mạnh, ngủ đủ giấc, ăn uống đều đặn và không phải một mình gánh mọi thứ.</span></li>
+        <li><span class="wish-icon">☀️</span><span>Lòng em luôn bình yên, những lo toan nhỏ không làm em mất đi nụ cười.</span></li>
+        <li><span class="wish-icon">✈️</span><span>Em có thật nhiều chuyến đi mới, nơi nào em muốn đến, anh sẽ cùng em đi.</span></li>
+        <li><span class="wish-icon">💞</span><span>Chúng mình luôn thấu hiểu và yêu thương nhau, cùng nhau đi qua mọi năm tháng.</span></li>
+      </ul>
+      <p class="wishes-hint">Anh chỉ mong em luôn hạnh phúc, theo cách em muốn.</p>
+    </section>
+
+    <!-- Panel 3: lời chúc -->
+    <section class="panel letter" id="panel-letter">
+      <h2>Gửi em</h2>
+      <p class="intro">&nbsp;</p>
       <p>Chúc em ngày 20/10 thật vui, thật rạng rỡ như chính nụ cười của em.</p>
       <p>Cảm ơn em vì đã ở bên anh, vì đã kiên nhẫn, vì đã làm cho những ngày bình thường trở nên đáng nhớ.</p>
       <p>Anh hy vọng năm nào anh cũng được nhìn thấy em cười như thế này. <span class="heart">❤</span></p>
@@ -299,6 +413,39 @@
       setTimeout(() => p.remove(), dur * 1000);
     }
     setInterval(spawnPetal, 500);
+
+    // Mở/đóng từng panel (chỉ một panel mở cùng lúc)
+    const buttons = document.querySelectorAll(".btn");
+    const panels = document.querySelectorAll(".panel");
+
+    function showPanel(id) {
+      panels.forEach(p => p.classList.toggle("show", p.id === id && !p.classList.contains("show")));
+      buttons.forEach(b => b.classList.toggle("active", b.dataset.target === id && document.getElementById(id).classList.contains("show")));
+
+      const panel = document.getElementById(id);
+      if (panel.classList.contains("show")) {
+        if (id === "panel-wish") revealWishes(panel);
+        panel.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => showPanel(btn.dataset.target));
+    });
+
+    // Bấm từng nét đẹp để mở mô tả
+    document.querySelectorAll(".feature").forEach(f => {
+      f.addEventListener("click", () => f.classList.toggle("open"));
+    });
+
+    // Mong ước hiện lần lượt
+    function revealWishes(panel) {
+      const items = panel.querySelectorAll(".wishes li");
+      items.forEach(li => li.classList.remove("show"));
+      items.forEach((li, i) => {
+        setTimeout(() => li.classList.add("show"), 300 * i);
+      });
+    }
   </script>
 
 </body>
